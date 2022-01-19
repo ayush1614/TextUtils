@@ -4,15 +4,21 @@ import React, { useState } from 'react'
 export default function TextForm(props) {
 
     // handling events 
+
+    //change to uppercase 
     const handleUpClick = () => {
-        // console.log("Uppercase button clicked .")
-        text = text.toUpperCase();
-        setText(text);
+        let newText = text.toUpperCase();
+        setText(newText);
+    };
+
+    //convert to lower case 
+    const handleLoClick = () => {
+        let newText = text.toLowerCase();
+        setText(newText);
     };
 
     const handleChange = (event) => {
-        // console.log("Handle Change.")
-        setText(event.target.value);        //on using this we now write on textarea 
+        setText(event.target.value);        //on typing we set the updated value  | helps to type in text area
     };
 
 
@@ -28,7 +34,8 @@ export default function TextForm(props) {
 
             {/*onChange is used so that we can write in textarea . Helps in settting the state and updating it*/}
             <div className="form-group"><textarea className="form-control" value={text} onChange={handleChange} id="textArea" rows="8" placeholder='text...'></textarea></div>
-            <button className="btn btn-primary my-1" onClick={handleUpClick}>Click me </button>
+            <button className="btn btn-primary my-3 mx-1" onClick={handleUpClick}>Change to UpperCase</button>
+            <button className="btn btn-primary my-3 mx-2" onClick={handleLoClick}>Change to LowerCase</button>
 
         </div>
     )
