@@ -17,26 +17,46 @@ export default function TextForm(props) {
         setText(newText);
     };
 
-    const handleChange = (event) => {
-        setText(event.target.value);        //on typing we set the updated value  | helps to type in text area
+    const handleExtraSpaces = () => {
+        let newText =  text.split(/[ ] + /) ;
+        setText(newText.join(" ")) ; 
+    }
+
+    const handleClear = () => {
+        let newText = '';
+        setText(newText); 
     };
 
+        const handleChange = (event) => {
+            setText(event.target.value);        //on typing we set the updated value  | helps to type in text area
+        };
 
-    //updating the value of the text
-    let [text, setText] = useState(""); // hook  is made 
-    // setText is used to update the value of text variable
 
-    return (
-        <div>
+        let [text, setText] = useState('');             // useState hook
+        // setText is used to update the value of text variable
 
-            {/* setting the props */}
-            <h1>{props.heading}</h1>
+        return (
+            <>
+                <div className='container'>
+                    {/* setting the props */}
+                    <h1>{props.heading}</h1>
 
-            {/*onChange is used so that we can write in textarea . Helps in settting the state and updating it*/}
-            <div className="form-group"><textarea className="form-control" value={text} onChange={handleChange} id="textArea" rows="8" placeholder='text...'></textarea></div>
-            <button className="btn btn-primary my-3 mx-1" onClick={handleUpClick}>Change to UpperCase</button>
-            <button className="btn btn-primary my-3 mx-2" onClick={handleLoClick}>Change to LowerCase</button>
+                    {/*onChange is used so that we can write in textarea . Helps in settting the state and updating it*/}
+                    <div className="form-group"><textarea className="form-control" value={text} onChange={handleChange} id="textArea" rows="8" placeholder='text...'></textarea></div>
+                    <button className="btn btn-primary my-2 mx-1" onClick={handleUpClick}>Change to UpperCase</button>
+                    <button className="btn btn-primary my-1 mx-2" onClick={handleLoClick}>Change to LowerCase</button>
+                    <button className="btn btn-primary my-1 mx-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+                    <button className="btn btn-primary my-1 mx-2" onClick={handleClear}>Clear</button>
 
-        </div>
-    )
-}
+                </div>
+                <hr />
+                <div className="container">
+                    <h4>Text Summary</h4>
+                    <p>Words : {text.split(" ").length - 1} &nbsp; &nbsp; Characters  : {text.length}</p>
+                    <p>{0.008 * (text.split(" ").length - 1)} Minutes to Read</p>
+                    <h5>Preview</h5>
+                    <p>{text}</p>
+                </div>
+            </>
+        )
+    }
