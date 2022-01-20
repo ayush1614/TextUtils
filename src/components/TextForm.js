@@ -3,24 +3,25 @@ import React, { useState } from 'react'
 
 export default function TextForm(props) {
 
-    // handling events 
-
     //change to uppercase 
     const handleUpClick = () => {
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert('Converted to Uppercase' ,'success') ;
     };
 
     //convert to lower case 
     const handleLoClick = () => {
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert('Converted to Lowercase') ; 
     };
 
     // removes extra spaces
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ] + /);
-        setText(newText.join(" "));
+        setText(newText.join(" ")); 
+        props.showAlert('Extra Spaces Removed')
     }
 
     const handleCopyText = () => {
@@ -32,12 +33,15 @@ export default function TextForm(props) {
 
         // copy the text inside the text field
         navigator.clipboard.writeText(copyText.value);
+
+        props.showAlert('Copied to Clipboard')
     }
 
     //clears the text area 
     const handleClear = () => {
         let newText = '';
         setText(newText);
+        props.showAlert('Cleared')
     };
 
     const handleChange = (event) => {
