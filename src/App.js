@@ -19,7 +19,7 @@ function App() {
 
     setTimeout(() => {
       setAlert(null)
-    }, 2000);
+    }, 1500);
   }
 
   const changeMode = () => {
@@ -46,7 +46,7 @@ function App() {
             <About mode={mode} />
           </Route>
           <Route exact path="/">
-          <TextForm showAlert={showAlert} heading="Enter text here" mode={mode} />
+          <TextForm showAlert={showAlert} heading="Enter text here to analyze" mode={mode} />
           </Route>
         </Switch>
         </div>
