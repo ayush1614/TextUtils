@@ -7,8 +7,7 @@ import About from './components/About'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
@@ -42,11 +41,11 @@ function App() {
         <Navbar title="TextUtils" mode={mode} changeMode={changeMode} />
         <Alert alert={alert} />
         <div className="container my-3">
-        <Switch>
-          <Route path="/about">
-            <About />
+        <Switch>    {/* used for routing*/}
+          <Route exact path="/about">
+            <About mode={mode} />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
           <TextForm showAlert={showAlert} heading="Enter text here" mode={mode} />
           </Route>
         </Switch>
